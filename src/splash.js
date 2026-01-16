@@ -15,6 +15,64 @@ function crossLine(x,y,width){
   drawLine(y,x,width);
 }
 
+function drawAssistantRobot(x, y, scale){
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+
+  // monitor
+  setContextAtrribute(5);
+  setContextAtrribute(0,2,2);
+  ctx.strokeRect(-70, -55, 140, 80);
+  setContextAtrribute(1,1);
+  ctx.fillRect(-66, -51, 132, 72);
+  setContextAtrribute(2);
+  ctx.beginPath();
+  drawLine(-50, -20, 100);
+  drawLine(-50, 0, 100);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(-20, 25);
+  ctx.lineTo(20, 25);
+  ctx.lineTo(30, 45);
+  ctx.lineTo(-30, 45);
+  ctx.closePath();
+  ctx.stroke();
+
+  // robot body
+  setContextAtrribute(0,2,1.5);
+  setContextAtrribute(0,1);
+  ctx.fillRect(-22, 10, 44, 32);
+  setContextAtrribute(6);
+  ctx.strokeRect(-22, 10, 44, 32);
+  ctx.beginPath();
+  ctx.moveTo(-22, 26);
+  ctx.lineTo(-40, 26);
+  ctx.moveTo(22, 26);
+  ctx.lineTo(40, 26);
+  ctx.stroke();
+
+  // robot head
+  ctx.beginPath();
+  setContextAtrribute(6);
+  ctx.strokeRect(-18, -10, 36, 20);
+  setContextAtrribute(2);
+  ctx.fillRect(-16, -8, 32, 16);
+  setContextAtrribute(0,1);
+  ctx.beginPath();
+  ctx.arc(-6, 0, 2.5, 0, Math.PI * 2);
+  ctx.arc(6, 0, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(0, -10);
+  ctx.lineTo(0, -18);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, -20, 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+}
 
 function drawSplash(){
   ctx.save();
@@ -68,6 +126,8 @@ function drawSplash(){
     drawDiagonal(-i*distanceLine+FW/2,FH-limit,limit,true,-offset);
   }
   ctx.stroke(); 
+
+  drawAssistantRobot(600, 360, 1.2);
 
   if(controlHelp){ 
     displayWord('controls', 400, 130,12, [0,16]);
